@@ -11,6 +11,6 @@ import com.empowerenergy.empowerenergy.model.TemaModel;
 @Repository
 public interface TemaRepository extends JpaRepository<TemaModel, Long> {
 
-	public List<TemaModel> findAllByCategoria(Tema categoria);
+	public List<TemaModel> findAllByTema(TemaModel tema);
 
 }

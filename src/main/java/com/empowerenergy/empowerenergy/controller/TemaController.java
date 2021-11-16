@@ -58,8 +58,8 @@ public class TemaController {
 	}
 	*/
 	@GetMapping("/GetTema")
-	public ResponseEntity<List<TemaModel>> GetByTema(@PathVariable Tema categoria){
-		return ResponseEntity.status(200).body(repositorio.findAllByCategoria(categoria));
+	public ResponseEntity<List<TemaModel>> GetByTema(@PathVariable TemaModel tema){
+		return ResponseEntity.status(200).body(repositorio.findAllByTema(tema));
 												
 	}
 
