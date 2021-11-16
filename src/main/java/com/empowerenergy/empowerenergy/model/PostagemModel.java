@@ -1,6 +1,7 @@
 package com.empowerenergy.empowerenergy.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -41,7 +42,7 @@ public class PostagemModel {
 	private String hashtag;
 
 	@JsonFormat(pattern = "dd-MM-yyyy")
-	private LocalDate dataPostagem = LocalDate.now();
+	private LocalDateTime dataPostagem = LocalDateTime.now();
 
 	@ManyToOne
 	@JoinColumn(name = "id_usuario")
@@ -78,11 +79,11 @@ public class PostagemModel {
 		this.descricao = descricao;
 	}
 
-	public LocalDate getDataPostagem() {
+	public LocalDateTime getDataPostagem() {
 		return dataPostagem;
 	}
 
-	public void setDataPostagem(LocalDate dataPostagem) {
+	public void setDataPostagem(LocalDateTime dataPostagem) {
 		this.dataPostagem = dataPostagem;
 	}
 

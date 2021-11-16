@@ -7,6 +7,9 @@ import javax.validation.Valid;
 
 import com.empowerenergy.empowerenergy.model.UserLogin;
 import com.empowerenergy.empowerenergy.service.UsuarioService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -73,17 +76,16 @@ public class UsuarioController {
 		}
 	}
 
+	@ApiOperation(value = "Autentica usuario no sistema")
+	@ApiResponses(value = {
+			@ApiResponse(code = 201, message = "Retorna credenciais de usuario"),
+			@ApiResponse(code = 400, message = "Erro na requisição!")
+	})
 	@PostMapping("/logar")
 	public ResponseEntity<UserLogin> Authentication(@Valid @RequestBody Optional<UserLogin> user) {
 		return usuarioService.Logar(user).map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
 	}
-
-	/*@PostMapping("/cadastrar")
-	public ResponseEntity<Object> Post(@Valid @RequestBody UsuarioModel usuario) {
-		return ResponseEntity.status(HttpStatus.CREATED)
-				.body(usuarioService.CadastrarUsuario(usuario));
-	}*/
 	
 	@PostMapping("/cadastrar")
 	public ResponseEntity<Object> salvar(@Valid @RequestBody UsuarioModel usuario) {

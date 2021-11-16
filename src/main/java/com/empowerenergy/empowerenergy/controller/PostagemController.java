@@ -22,7 +22,7 @@ import com.empowerenergy.empowerenergy.repository.PostagemRepository;
 
 @RestController
 @RequestMapping("/api/v1/postagem")
-@CrossOrigin("*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class PostagemController {
 
 	@Autowired
