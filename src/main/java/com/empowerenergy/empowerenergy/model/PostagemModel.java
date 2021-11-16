@@ -16,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -35,7 +36,7 @@ public class PostagemModel {
 
 	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long IdPostagem;
 	private @NotBlank String titulo;
-	private @NotBlank String descricao;
+	private @NotBlank(message = "O atributo Usuário é Obrigatório!") @Size(min = 5, max = 500) String descricao;
 	private String imagem;
 	private String localizacao;
 	private String mencao;
