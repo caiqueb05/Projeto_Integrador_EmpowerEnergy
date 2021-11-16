@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModelProperty;
@@ -24,8 +25,10 @@ public class TemaModel {
 	@ApiModelProperty(hidden = true)
 	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long idTema; 
 
-	private @Enumerated(EnumType.STRING) Tema categoria;
+	/*private @Enumerated(EnumType.STRING) Tema categoria;*/
 
+	@NotBlank
+	private String tema;
 		
 	@OneToMany(mappedBy = "tema", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("tema")
@@ -43,14 +46,14 @@ public class TemaModel {
 	}
 
 
-	public Tema getCategoria() {
+	/*public Tema getCategoria() {
 		return categoria;
 	}
 
 
 	public void setCategoria(Tema categoria) {
 		this.categoria = categoria;
-	}
+	}*/
 
 
 	public List<PostagemModel> getPostagens() {
@@ -59,6 +62,14 @@ public class TemaModel {
 
 	public void setPostagens(List<PostagemModel> postagens) {
 		this.postagens = postagens;
+	}
+
+	public String getTema() {
+		return tema;
+	}
+
+	public void setTema(String tema) {
+		this.tema = tema;
 	}
 }
 
