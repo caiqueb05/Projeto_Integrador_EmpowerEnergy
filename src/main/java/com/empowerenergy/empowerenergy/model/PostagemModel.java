@@ -2,19 +2,10 @@ package com.empowerenergy.empowerenergy.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -42,8 +33,8 @@ public class PostagemModel {
 	private String mencao;
 	private String hashtag;
 
-	@JsonFormat(pattern = "dd-MM-yyyy")
-	private LocalDateTime dataPostagem = LocalDateTime.now();
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataPostagem = new java.sql.Date(System.currentTimeMillis());
 
 	@ManyToOne
 	@JoinColumn(name = "id_usuario")
@@ -80,11 +71,11 @@ public class PostagemModel {
 		this.descricao = descricao;
 	}
 
-	public LocalDateTime getDataPostagem() {
+	public Date getDataPostagem() {
 		return dataPostagem;
 	}
 
-	public void setDataPostagem(LocalDateTime dataPostagem) {
+	public void setDataPostagem(Date dataPostagem) {
 		this.dataPostagem = dataPostagem;
 	}
 
