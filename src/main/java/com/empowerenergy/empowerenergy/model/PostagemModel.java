@@ -28,7 +28,7 @@ public class PostagemModel {
 	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long IdPostagem;
 	private @NotBlank String titulo;
 	private @NotBlank(message = "O atributo Usuário é Obrigatório!") @Size(min = 5, max = 500) String descricao;
-	private String imagem;
+	private @Size(max = 500) String imagem;
 	private String localizacao;
 	private String mencao;
 	private String hashtag;

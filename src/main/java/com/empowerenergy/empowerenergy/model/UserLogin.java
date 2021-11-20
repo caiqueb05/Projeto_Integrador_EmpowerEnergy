@@ -19,6 +19,8 @@ public class UserLogin {
 
 	private String tipo;
 
+	private String profissao;
+
 	public long getId() {
 		return Id;
 	}
@@ -73,5 +75,13 @@ public class UserLogin {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public String getProfissao() {
+		return profissao;
+	}
+
+	public void setProfissao(String profissao) {
+		this.profissao = profissao;
 	}
 }

@@ -38,7 +38,7 @@ public class UsuarioModel {
 	
 	@ApiModelProperty(example = "email@email.com.br")
 	@Email(message = "O atributo Usuário deve ser um email válido!")
-	@NotBlank(message = "O atributo Usuário é Obrigatório!")
+	@NotBlank
 	@Size(min = 5, max = 50)
 	private String emailUsuario;
 	
@@ -48,9 +48,13 @@ public class UsuarioModel {
 
 	private int idadeUsuario;
 
+	@Size(max = 500)
 	private String fotoUsuario;
 
+	@NotBlank
 	private String tipoUsuario;
+
+	private String profissaoUsuario;
 	
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("usuario")
@@ -116,6 +120,14 @@ public class UsuarioModel {
 
 	public void setTipoUsuario(String tipoUsuario) {
 		this.tipoUsuario = tipoUsuario;
+	}
+
+	public String getProfissaoUsuario() {
+		return profissaoUsuario;
+	}
+
+	public void setProfissaoUsuario(String profissaoUsuario) {
+		this.profissaoUsuario = profissaoUsuario;
 	}
 }
 
