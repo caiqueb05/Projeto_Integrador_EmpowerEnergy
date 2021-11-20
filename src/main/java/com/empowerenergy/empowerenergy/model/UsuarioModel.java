@@ -38,8 +38,8 @@ public class UsuarioModel {
 	
 	@ApiModelProperty(example = "email@email.com.br")
 	@Email(message = "O atributo Usuário deve ser um email válido!")
-	@NotBlank
 	@Size(min = 5, max = 50)
+	@NotBlank
 	private String emailUsuario;
 	
 	@NotBlank
