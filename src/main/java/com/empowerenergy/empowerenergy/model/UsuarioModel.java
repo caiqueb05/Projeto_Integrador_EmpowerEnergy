@@ -56,7 +56,7 @@ public class UsuarioModel {
 
 	private String profissaoUsuario;
 	
-	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("usuario")
 	@ApiModelProperty(hidden = true)
 	private List<PostagemModel> minhasPostagens = new ArrayList<>();
