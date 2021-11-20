@@ -29,6 +29,29 @@ public class UsuarioService {
 
 	}
 
+    public Optional<UsuarioModel> atualizarUsuario(UsuarioModel usuarioParaAtualizar) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        return repository.findById(usuarioParaAtualizar.getIdUsuario()).map(resp -> {
+            resp.setNomeUsuario(usuarioParaAtualizar.getNomeUsuario());
+            resp.setSenhaUsuario(encoder.encode(usuarioParaAtualizar.getSenhaUsuario()));
+            return Optional.ofNullable(repository.save(resp));
+        }).orElseGet(() -> {
+            return Optional.empty();
+        });
+
+    }
+
+    /*public Optional<Object> AtualizarUsuario(UsuarioModel usuarioParaCadastrar) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        return repository.findById(usuarioParaCadastrar.getIdUsuario()).map(usuarioExistente -> {
+            return Optional.empty();
+        }).orElseGet(() -> {
+            usuarioParaCadastrar.setSenhaUsuario(encoder.encode(usuarioParaCadastrar.getSenhaUsuario()));
+            return Optional.ofNullable(repository.save(usuarioParaCadastrar));
+        });
+
+    }*/
+
 	public Optional<UserLogin> Logar(Optional<UserLogin> user) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         Optional<UsuarioModel> optionalUsuario = repository.findByEmailUsuario(user.get().getEmail());

@@ -60,9 +60,24 @@ public class UsuarioController {
 		
 	}*/
 	
-	@PutMapping("/atualizar")
+	/*@PutMapping("/atualizar")
 	public ResponseEntity<UsuarioModel> atualizar(@Valid @RequestBody UsuarioModel novoUsuario) {
 		return ResponseEntity.status(201).body(repositorio.save(novoUsuario));
+	}*/
+
+	@ApiOperation(value = "Atualizar usuario existente")
+	@ApiResponses(value = {
+			@ApiResponse(code = 201, message = "Retorna usuario atualizado"),
+			@ApiResponse(code = 400, message = "Id de usuario invalido")
+	})
+	@PutMapping("/atualizar")
+	public ResponseEntity<UsuarioModel> atualizar(@Valid @RequestBody UsuarioModel novoUsuario) {
+		return usuarioService.atualizarUsuario(novoUsuario).map(resp -> ResponseEntity.status(201).body(resp))
+				.orElseThrow(() -> {
+					throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+							"Necessario que passe um idUsuario valido para alterar!.");
+				});
+
 	}
 
 	@DeleteMapping("/deletar/{id_usuario}")
